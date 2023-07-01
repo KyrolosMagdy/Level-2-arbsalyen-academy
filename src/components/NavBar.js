@@ -13,13 +13,15 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Container } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { Routes } from "../constants/routes";
 
 const drawerWidth = 240;
-const navItems = ["Home", "About", "Contact"];
 
 export const NavBarComponent = (props) => {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const navigate = useNavigate();
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -32,13 +34,31 @@ export const NavBarComponent = (props) => {
       </Typography>
       <Divider />
       <List>
-        {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
-              <ListItemText primary={item} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        <ListItem disablePadding>
+          <ListItemButton
+            sx={{ textAlign: "center" }}
+            onClick={() => {
+              navigate(Routes.home);
+            }}
+          >
+            <ListItemText primary={"Home"} />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton
+            sx={{ textAlign: "center" }}
+            onClick={() => {
+              navigate(Routes.Courses);
+            }}
+          >
+            <ListItemText primary={"Courses"} />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton sx={{ textAlign: "center" }}>
+            <ListItemText primary={"About"} />
+          </ListItemButton>
+        </ListItem>
       </List>
     </Box>
   );
@@ -72,11 +92,23 @@ export const NavBarComponent = (props) => {
               Arbsalyen Academy
             </Typography>
             <Box sx={{ display: { xs: "none", sm: "block" } }}>
-              {navItems.map((item) => (
-                <Button key={item} sx={{ color: "#fff" }}>
-                  {item}
-                </Button>
-              ))}
+              <Button
+                sx={{ color: "#fff" }}
+                onClick={() => {
+                  navigate(Routes.home);
+                }}
+              >
+                Home
+              </Button>
+              <Button
+                sx={{ color: "#fff" }}
+                onClick={() => {
+                  navigate(Routes.Courses);
+                }}
+              >
+                Courses
+              </Button>
+              <Button sx={{ color: "#fff" }}>About</Button>
             </Box>
           </Toolbar>
         </AppBar>
