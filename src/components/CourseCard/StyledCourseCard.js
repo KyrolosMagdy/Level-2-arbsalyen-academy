@@ -2,6 +2,7 @@ import { Typography, styled, Card } from "@mui/material";
 
 export const StyledCardWrapper = styled(Card)(({ theme }) => ({
   height: '13rem',
+  width: '100%',
   boxShadow: theme.shadows[1],
   margin: '1rem 0',
   [theme.breakpoints.down('md')]: {

@@ -4,6 +4,7 @@ import { Container, Grid, Toolbar } from "@mui/material";
 import Courses from "../../constants/courses.json";
 import { LoaderComponent } from "../../components/LoaderComponent/LoaderComponent";
 import { CourseCard } from "../../components/CourseCard/CourseCard";
+import { StyledPageContainer } from "./StyledCoursesPage";
 
 export const CoursesPage = () => {
   const [courses, setCourses] = useState([]);
@@ -30,17 +31,17 @@ export const CoursesPage = () => {
   }, [fetchInstructors]);
 
   return (
-    <Container>
+    <StyledPageContainer maxWidth='xl'>
       <Toolbar />
       <LoaderComponent open={isLoading} />
-      <Grid container gap={1}>
+      <Grid container gap={1} alignItems='center' justifyContent='center'>
         {courses?.length > 0 &&
           courses.map((course) => (
-            <Grid item xs={12} md={5} lg={3}>
+            <Grid item xs={12} lg={3} md={5} key={course.id}>
               <CourseCard key={course.id} course={course} />
             </Grid>
           ))}
       </Grid>
-    </Container>
+    </StyledPageContainer>
   );
 };
