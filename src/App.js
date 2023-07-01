@@ -6,6 +6,7 @@ import { HomePage } from "./pages/Home/HomePage";
 import { InstructorsPage } from "./pages/Instructor/InstructorPage";
 import { Routes as RoutesConstant } from "./constants/routes";
 import { CoursesPage } from "./pages/Courses/CoursesPage";
+import { AboutUs } from "./pages/About/AboutPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path={RoutesConstant.home} element={<HomePage />} />
           <Route path={`${RoutesConstant.instructor}/:id`} element= {<InstructorsPage />} />
           <Route path={RoutesConstant.Courses} element={<CoursesPage />} />
+          <Route path={RoutesConstant.about} element={<AboutUs />} />
         </Routes>
       </Router>
     </div>

@@ -55,7 +55,12 @@ export const NavBarComponent = (props) => {
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton sx={{ textAlign: "center" }}>
+          <ListItemButton
+            sx={{ textAlign: "center" }}
+            onClick={() => {
+              navigate(Routes.about);
+            }}
+          >
             <ListItemText primary={"About"} />
           </ListItemButton>
         </ListItem>
@@ -108,7 +113,14 @@ export const NavBarComponent = (props) => {
               >
                 Courses
               </Button>
-              <Button sx={{ color: "#fff" }}>About</Button>
+              <Button
+                sx={{ color: "#fff" }}
+                onClick={() => {
+                  navigate(Routes.about);
+                }}
+              >
+                About
+              </Button>
             </Box>
           </Toolbar>
         </AppBar>
