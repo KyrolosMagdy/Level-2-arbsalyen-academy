@@ -1,20 +1,25 @@
 import React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Divider from "@mui/material/Divider";
-import Drawer from "@mui/material/Drawer";
-import IconButton from "@mui/material/IconButton";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
+import {
+  AppBar,
+  Box,
+  Divider,
+  Drawer,
+  IconButton,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Toolbar,
+  Button,
+  Avatar,
+  Container,
+} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import { Container } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+
 import { Routes } from "../constants/routes";
+import Arbsalyen from "../assets/arbsalyen.jpeg";
+import { StyledNavAvatarWrapper } from "./StyledNavbar";
 
 const drawerWidth = 240;
 
@@ -29,9 +34,16 @@ export const NavBarComponent = (props) => {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
-      </Typography>
+      <div
+        style={{ display: "grid", justifyContent: "center", margin: "1rem" }}
+      >
+        <Avatar
+          src={Arbsalyen}
+          style={{ width: "4rem", height: "4rem" }}
+          alt="arbsalyen academy"
+        />
+      </div>
+
       <Divider />
       <List>
         <ListItem disablePadding>
@@ -74,7 +86,12 @@ export const NavBarComponent = (props) => {
   return (
     <Container>
       <Box sx={{ display: "flex" }}>
-        <AppBar component="nav">
+        <AppBar
+          component="nav"
+          sx={(theme) => ({
+            backgroundColor: theme.palette.common.darkSelver,
+          })}
+        >
           <Toolbar>
             <IconButton
               color="inherit"
@@ -85,17 +102,14 @@ export const NavBarComponent = (props) => {
             >
               <MenuIcon />
             </IconButton>
-            <Typography
-              variant="h6"
-              component="div"
-              sx={{
-                flexGrow: 1,
-                display: { xs: "none", sm: "grid" },
-                justifyContent: "start",
-              }}
-            >
-              Arbsalyen Academy
-            </Typography>
+            <StyledNavAvatarWrapper>
+              <Avatar
+                src={Arbsalyen}
+                style={{ width: "4rem", height: "4rem" }}
+                alt="arbsalyen academy"
+              />
+            </StyledNavAvatarWrapper>
+
             <Box sx={{ display: { xs: "none", sm: "block" } }}>
               <Button
                 sx={{ color: "#fff" }}

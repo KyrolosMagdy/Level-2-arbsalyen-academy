@@ -7,20 +7,20 @@ export const theme = createTheme({
   palette: {
     primary: {
       // Purple and green play nicely together.
-      main: '#DA5323',
+      main: '#26ee9e',
     },
     secondary: {
       // This is green.A700 as hex.
-      main: '#333333',
+      main: '#e41e24',
     },
     common: {
       silver: '#C0C0C0',
-      green: '#2F8E89',
-      secondary: "#FAFAFA",
+      green: '#26ee9e',
       purple: '#652943',
       darkSelver: '#33333399',
       blue: '#2F80ED',
       darkGreen: '#219653;',
+      lightSilver: '#FAFAFA',
     },
   },
   typography: {

@@ -4,7 +4,7 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import { StyledCardWrapper, StyledDesc, StyledTypography } from "./StyledCourseCard";
 
-export const CourseCard = ({ course }) => {
+export const CourseCard = ({ course, handleEnroll }) => {
   return (
     <StyledCardWrapper>
       <CardContent>
@@ -16,7 +16,9 @@ export const CourseCard = ({ course }) => {
         </StyledDesc>
       </CardContent>
       <CardActions>
-        <Button size="small">Enroll Now</Button>
+        <Button size="small" onClick={() => {
+          handleEnroll(course?.instructors)
+        }}>Enroll Now</Button>
       </CardActions>
     </StyledCardWrapper>
   );

@@ -1,14 +1,18 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Container, Grid, Toolbar } from "@mui/material";
+import { Grid, Toolbar } from "@mui/material";
 
 import Courses from "../../constants/courses.json";
+import Instructor from "../../constants/instructors.json";
 import { LoaderComponent } from "../../components/LoaderComponent/LoaderComponent";
 import { CourseCard } from "../../components/CourseCard/CourseCard";
 import { StyledPageContainer } from "./StyledCoursesPage";
+import { ContactUsModal } from "../../components/ContactUsModal/ContactUsModal";
 
 export const CoursesPage = () => {
   const [courses, setCourses] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [insts, setInsts] = useState([]);
 
   const fetchInstructors = useCallback(() => {
     setIsLoading(true);
@@ -26,19 +30,45 @@ export const CoursesPage = () => {
     res();
   }, []);
 
+  const fetchSingleInstructor = (ids) => {
+    const tempInstructors = [];
+    for(let i = 0; i < ids.length; i++) {
+      const ins = Instructor.instructors.find((inst) => inst.id === ids[i]);
+      tempInstructors.push(ins)
+    }
+    return tempInstructors;
+  };
+
+  const handleCourseClicked = (userId) => {
+    const inst = fetchSingleInstructor(userId);
+    if (inst?.length > 0) {
+      setInsts(inst);
+    }
+    setIsModalOpen(true)
+  };
+
+  console.log('insts: ', insts)
+
   useEffect(() => {
     fetchInstructors();
   }, [fetchInstructors]);
 
   return (
-    <StyledPageContainer maxWidth='xl'>
+    <StyledPageContainer maxWidth="xl">
       <Toolbar />
       <LoaderComponent open={isLoading} />
-      <Grid container gap={1} alignItems='center' justifyContent='center'>
+      <ContactUsModal
+        open={isModalOpen}
+        handleClose={() => {
+          setIsModalOpen(false);
+        }}
+        instructors={insts}
+      />
+      <Grid container gap={1} alignItems="center" justifyContent="center">
         {courses?.length > 0 &&
           courses.map((course) => (
             <Grid item xs={12} lg={3} md={5} key={course.id}>
-              <CourseCard key={course.id} course={course} />
+              <CourseCard key={course.id} handleEnroll={handleCourseClicked} course={course} />
             </Grid>
           ))}
       </Grid>

@@ -5,4 +5,7 @@ export const StyledGrid = styled(Grid)(({ theme }) => ({
   marginTop: theme.spacing(10),
 
   marginBottom: theme.spacing(10),
+  [theme.breakpoints.down('md')]: {
+    marginTop: theme.spacing(5)
+  }
 }))

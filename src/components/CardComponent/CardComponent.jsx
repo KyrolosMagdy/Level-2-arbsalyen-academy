@@ -8,7 +8,6 @@ import CardMedia from "@mui/material/CardMedia";
 import { useNavigate } from "react-router";
 
 import MyImage from "../../assets/image.jpg";
-import CourseImage from "../../assets/course.jpg";
 import { StyledCardComponent } from "./StyledCardComponent";
 import { Routes } from "../../constants/routes";
 
@@ -34,7 +33,7 @@ export const CardComponent = ({ data }) => {
       <CardMedia
         component="img"
         height="294"
-        image={data.id === 1 ? CourseImage : data.imageUrl}
+        image={data.wallpaber}
         alt="Paella dish"
       />
       <CardContent>

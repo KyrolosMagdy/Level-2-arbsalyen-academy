@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Toolbar, Grid, Skeleton } from "@mui/material";
+import { Toolbar, Grid } from "@mui/material";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 
@@ -12,12 +12,14 @@ import {
   StyledCoursesContainer,
   StyledPageContainer,
 } from "./StyledInstructorPage";
-import CourseImage from "../../assets/course.jpg";
 import { CourseCard } from "../../components/CourseCard/CourseCard";
+import { ContactUsModal } from "../../components/ContactUsModal/ContactUsModal";
 
 export const InstructorsPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [instructor, setInstructor] = useState({});
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [insts, setInsts] = useState([]);
   const { id } = useParams();
 
   const fetchInstructor = useCallback(() => {
@@ -45,16 +47,37 @@ export const InstructorsPage = () => {
     }
   }, [fetchInstructor, id, instructor?.id]);
 
+  const fetchSingleInstructor = (ids) => {
+    const tempInstructors = [];
+    for (let i = 0; i < ids.length; i++) {
+      const ins = Instructors.instructors.find((inst) => inst.id === ids[i]);
+      tempInstructors.push(ins);
+    }
+    return tempInstructors;
+  };
+
+  const handleCourseClicked = (userId) => {
+    const inst = fetchSingleInstructor(userId);
+    if (inst?.length > 0) {
+      setInsts(inst);
+    }
+    setIsModalOpen(true)
+  };
+
   return (
     <StyledPageContainer>
       <Toolbar />
       <LoaderComponent open={isLoading} />
       <StyledCardWrapper>
-        {Number(id) === 1 ? (
-          <StyledCardMedia image={CourseImage} title="green iguana" />
-        ) : (
-          <Skeleton variant="rectangular" height="20rem" />
-        )}
+        <StyledCardMedia image={instructor?.wallpaber} title="green iguana" />
+        <ContactUsModal
+          open={isModalOpen}
+          instructors={insts}
+          handleClose={() => {
+            setIsModalOpen(false);
+            setInsts([]);
+          }}
+        />
 
         <CardContent>
           <Typography
@@ -62,6 +85,7 @@ export const InstructorsPage = () => {
             variant="h5"
             component="div"
             textAlign="start"
+            color="secondary"
           >
             {instructor?.name}
           </Typography>
@@ -71,8 +95,8 @@ export const InstructorsPage = () => {
           <StyledCoursesContainer container gap={2}>
             {instructor?.courses?.length &&
               instructor.courses.map((ins) => (
-                <Grid item xs={4} key={ins.id}>
-                  <CourseCard course={ins} />
+                <Grid item xs={5} key={ins.id}>
+                  <CourseCard handleEnroll={handleCourseClicked} course={ins} />
                 </Grid>
               ))}
           </StyledCoursesContainer>

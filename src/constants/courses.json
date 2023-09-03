@@ -14,15 +14,45 @@
     },
     {
       "id": 3,
-      "courseTitle": "Drawings",
-      "instructors": [2],
-      "description": "This course will teach you all you need to know about how to draw"
+      "courseTitle": "Piano",
+      "instructors": [2, 3],
+      "description": "This course will teach you all you need to know about how to Play Piano",
+      "rating": 3.8
     },
     {
       "id": 4,
-      "courseTitle": "Drawings  -1",
-      "instructors": [2],
-      "description": "This course will teach you all you need to know about how to draw advanced"
+      "courseTitle": "Violin",
+      "instructors": [4, 5],
+      "description": "This course will teach you all you need to know to master the Violin",
+      "rating": 2.8
+    },
+    {
+      "id": 5,
+      "courseTitle": "Drawing",
+      "instructors": [6, 7, 8],
+      "description": "This course will teach you all you need to know To use pen and Paper as Master level",
+      "rating": 3.5
+    },
+    {
+      "id": 6,
+      "courseTitle": "Guitar",
+      "instructors": [9],
+      "description": "This course will teach you all you need to know To use Guitar Master level",
+      "rating": 3.5
+    },
+    {
+      "id": 7,
+      "courseTitle": "ICDL",
+      "instructors": [10],
+      "description": "This course will teach you all you need to know To use Computer as per Master level",
+      "rating": 3.5
+    },
+    {
+      "id": 8,
+      "courseTitle": "Photoshop, and Montage",
+      "instructors": [10],
+      "description": "This course will teach you all you need to know about Photoshop, how to montage a video as per Master level",
+      "rating": 3.5
     }
   ]
 }
